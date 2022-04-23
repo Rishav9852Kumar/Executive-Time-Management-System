@@ -1,0 +1,109 @@
+CALL HandleUpdateQuery(ExecutiveScheduleQuery)
+	CALL GetValidateQuery
+	CALL ShowExecSchedule
+	CALL UpdateSchedule
+
+CALL RegisterExec(ExecutiveData)
+	CALL GetExecData
+
+CALL ShowSchedule()
+
+CALL HandleLeave(Leave)
+	CALL GetLeaves
+	CALL RegisterLeave
+
+CALL GenerateStats
+
+CALL HandleAppointment(Appointment)
+	CALL FindSlots
+		CALL GetAppDetails
+	Call ValidRegisterApp
+		CALL SendMail
+
+
+// PSEUDOCODE BEGINS HERE
+
+PROCEDURE GetAppDetails()
+	AppDetails := INPUT AppointmentDetails
+	RETURN AppDetails
+END PROCEDURE
+
+PROCEDURE SendMail(Appointment)
+	Send Mail to Executive
+END PROCEDURE
+
+PROCEDURE GetValidateQuery()
+	query := INPUT Query
+	RETURN query
+END PROCEDURE
+
+PROCEDURE ShowExecSchedule(query)
+	schedule := create schedule from query
+	RETURN schedule
+END PROCEDURE
+
+PROCEDURE UpdateSchedule(BYREF schedule)
+	ALTER schedule
+END PROCEDURE
+
+PROCEDURE GetExecData()
+	execData := INPUT ExecutiveData
+	RETURN execData
+END PROCEDURE
+
+PROCEDURE GetLeaves()
+	leave := INPUT Leave
+	RETURN leave
+END PROCEDURE
+
+PROCEDURE RegisterLeave(leave)
+	Approve/Reject leave
+END PROCEDURE
+
+PROCEDURE FindSlots()
+	CALL GetAppDetails()
+	timeSlot := Find time slot based on given AppDetails
+	RETURN timeSlot
+END PROCEDURE
+
+PROCEDURE ValidRegisterApp(Appointment)
+	CALL SendMail(Appointment)
+END PROCEDURE
+
+PROCEDURE HandleUpdateQuery(ExecutiveScheduleQuery)
+	query := CALL GetValidateQuery()
+	schedule := CALL ShowExecSchedule(query)
+	CALL UpdateSchedule(schedule)
+END PROCEDURE
+
+PROCEDURE RegisterExec()
+	execData := CALL GetExecData()
+	RETURN execData
+END PROCEDURE
+
+PROCEDURE ShowSchedule()
+	Display Executive Schedule
+END PROCEDURE
+
+PROCEDURE HandleLeave()
+	leave := CALL GetLeaves()
+	CALL RegisterLeave(leave)
+END PROCEDURE
+
+PROCEDURE GenerateStats()
+	Display Statistics
+END PROCEDURE
+
+PROCEDURE HandleAppointment(Appointment):
+	timeslot := CALL FindSlots()
+	CALL ValidRegisterApp(Appointment)
+END PROCEDURE
+
+
+
+
+
+
+
+
+		

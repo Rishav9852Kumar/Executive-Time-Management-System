@@ -1,0 +1,24 @@
+Schedule : *{Appointment + Leaves}
+Available Slots : *{date+time}
+Appointment Data : Appointment + (Appointment Details)
+Appointment Details => date+description+participants
+Appointment : date+start_time+duration+description+participants
+Leaves : date+start_time+duration+description+exID
+Executives data : name+contact no+email+password+exID
+Updated Schedule : Schedule
+Executive Schedule Query : exID+*{date}
+Executive Schedule : Schedule
+description : string
+duration : number
+exId : string
+name : string
+contact : number
+email : string
+password : string
+participants: *{exID}
+
+
+
+
+
+
